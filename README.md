@@ -4,7 +4,7 @@ Com uma lista da base de dados do IMDb cria stickers com um texto e uma imagem p
 
 ## Uso
 
-- Coloque uma imagem com o nome `adesivo.png` na pasta entrada
+- Crie uma imagem e coloque em `IMDBSticker/adesivo.png`
 
 - Ao iniciar o programa digite o texto desejado
 
