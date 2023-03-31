@@ -4,8 +4,8 @@ Com uma lista da base de dados do IMDb cria stickers com um texto e uma imagem p
 
 ## Uso
 
--Coloque uma imagem com o nome 'Sticker.png' na pasta entrada
+- Coloque uma imagem com o nome 'Sticker.png' na pasta entrada
 
--Ao iniciar o programa digite o texto desejado
+- Ao iniciar o programa digite o texto desejado
 
--Os resultados estarão na pasta 'Saida'
+- Os resultados estarão na pasta 'Saida'
