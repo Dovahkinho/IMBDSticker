@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 public class GeradorDeSticker {
     
     
-    void criar(InputStream inputStream, String nomeArquivo, BufferedImage joinha) throws Exception {
+    void criar(InputStream inputStream, String nomeArquivo, BufferedImage joinha, String texto) throws Exception {
 
         //Leitura da Imagem
         BufferedImage imagemOriginal = ImageIO.read(inputStream);
@@ -27,7 +27,7 @@ public class GeradorDeSticker {
 
 
         
-        //Copiar a imagem original pra nova(em memória)
+        //Copiar a imagem original e sticker pra nova(em memória)
         Graphics2D graphics = (Graphics2D) novaImagem.getGraphics();
         graphics.drawImage(imagemOriginal, 0, 0, null);
         graphics.drawImage(joinha, largura-joinha.getWidth() ,novaAltura-joinha.getHeight() , null);
@@ -43,19 +43,16 @@ public class GeradorDeSticker {
 
 
         //Escrever uma frase na nova imagem
-        var texto ="BARNABE";
-
         FontMetrics fontMetrics = graphics.getFontMetrics();
         Rectangle2D retan = fontMetrics.getStringBounds(texto, graphics);
         var larguraTexto = (int) retan.getWidth();
         var horizontal = ((largura - larguraTexto)/2);
         var vertical = ((altura+(alturaExtra/2)));
-        var termoH = 0.05;
-        var termoV = 0.0025;
-        graphics.drawString(texto, horizontal + (int)(horizontal * termoH), vertical - (int)(vertical * termoV));
-        graphics.drawString(texto, horizontal + (int)(horizontal * termoH), vertical + (int)(vertical * termoV));
-        graphics.drawString(texto, horizontal - (int)(horizontal * termoH), vertical - (int)(vertical * termoV));
-        graphics.drawString(texto, horizontal - (int)(horizontal * termoH), vertical + (int)(vertical * termoV));
+        var lineOut = (int)retan.getWidth() /75;
+        graphics.drawString(texto, horizontal + lineOut, vertical - lineOut);
+        graphics.drawString(texto, horizontal + lineOut, vertical + lineOut);
+        graphics.drawString(texto, horizontal - lineOut, vertical - lineOut);
+        graphics.drawString(texto, horizontal - lineOut, vertical + lineOut);
         graphics.setColor(Color.BLACK);
         graphics.drawString(texto, horizontal , vertical);
 

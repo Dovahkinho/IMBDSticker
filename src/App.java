@@ -9,6 +9,7 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
@@ -23,12 +24,18 @@ public class App {
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         String body = response.body();
 
+        //Ler Texto Para Sticker
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String texto= sc.nextLine();
+
         // Separar Dados Pertinentes(Titulo, Poster, Classificação)
         var parser = new JsonParser();
         List<Map<String, String>> listaDeFilmes = parser.parse(body);
 
         // Exibir e manipular os dados
         var diretorio = new File("saida/");
+        File joia = new File("entrada/adesivo.png");
         diretorio.mkdir();
         for (Map<String,String> filme : listaDeFilmes) {
 
@@ -36,11 +43,10 @@ public class App {
             String titulo = filme.get("title");
             String nomeArquivo = titulo + ".png";
             InputStream inputStream = new URL(urlImagem).openStream();
-            File joia = new File("entrada/miluloia.png");
+            
             BufferedImage joinha = ImageIO.read(joia);
-
             var geradora = new GeradorDeSticker();
-            geradora.criar(inputStream, nomeArquivo, joinha);
+            geradora.criar(inputStream, nomeArquivo, joinha, texto);
 
             System.out.println();
             System.out.println(titulo);
