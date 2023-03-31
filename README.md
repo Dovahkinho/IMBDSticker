@@ -8,4 +8,4 @@ Com uma lista da base de dados do IMDb cria stickers com um texto e uma imagem p
 
 - Ao iniciar o programa digite o texto desejado
 
-- Os resultados estarão na pasta `Saida`
+- Os resultados estarão na pasta `IMBDSticker/saida/`
